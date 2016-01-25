@@ -7,8 +7,10 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var mongoose = require('mongoose');
 var authMiddleware = require('./util/authMiddleware');
+var cors = require('cors');
 //require('dotenv').load();
 var app = express();
+app.use(cors());
 
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://127.0.0.1/Unlimited');
 
