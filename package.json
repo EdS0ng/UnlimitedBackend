@@ -1,0 +1,33 @@
+{
+  "name": "unlimited",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node Server/app.js"
+  },
+  "engine": {
+    "node":"5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ray-kim-12/unlimited.git"
+  },
+  "author": "Edward Song, Ray Kim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ray-kim-12/unlimited/issues"
+  },
+  "homepage": "https://github.com/ray-kim-12/unlimited#readme",
+  "dependencies": {
+    "bcryptjs": "^2.3.0",
+    "body-parser": "^1.14.2",
+    "dotenv": "^2.0.0",
+    "express": "^4.13.4",
+    "jwt-simple": "^0.4.1",
+    "moment": "^2.11.1",
+    "mongoose": "^4.3.7",
+    "morgan": "^1.6.1"
+  }
+}
