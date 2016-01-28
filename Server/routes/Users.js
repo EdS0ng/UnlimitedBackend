@@ -2,7 +2,7 @@
 
 const express = require('express');
 const User = require('../models/userModel');
-const Avatar = require('../models/avatarModel');
+const Img = require('../models/imgModel');
 
 let router = express.Router();
 

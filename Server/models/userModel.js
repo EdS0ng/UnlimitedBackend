@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
     , bcrypt   = require('bcryptjs')
     , moment   = require('moment')
     , CONFIG   = require('../config/auth')
-    , Avatar = require('../models/avatarModel');
+    , Img = require('../models/imgModel');
 
 
 let User,
@@ -14,14 +14,15 @@ let User,
 let userSchema = Schema({
   username: {type: String, required: true, unique: true},
   password: {type: String, required: true},
-  email: {type:String, default: ' '},
+  email: {type:String, default: 'Enter an Email'},
   itemsForSale: [{type:Schema.Types.ObjectId, ref: 'Item'}],
   bids: [{type:Schema.Types.ObjectId, ref:'Bid'}],
-  profilename: {type: String, default:' '},
-  phone: {type:String, default:' '},
-  address: {type: String, default:' '},
-  about:{type: String, default:' '},
-  avatar:{type: Schema.Types.ObjectId, ref: 'Avatar'}
+  profilename: {type: String, default:'Enter a Profile Name'},
+  phone: {type:String, default:'Enter a Phone Number'},
+  address: {type: String, default:'Enter an Address'},
+  about:{type: String, default:'Enter a Short Description'},
+  avatar:{type: Schema.Types.ObjectId, ref: 'Img'},
+  backgroundImg: {type:Schema.Types.ObjectId, ref: 'Img'}
 });
 
 userSchema.methods.token = function() {
@@ -110,7 +111,7 @@ userSchema.post('remove', function (next){
   this.model('Bid').remove({_id:{$in:this.bids}}, function (err, results){
     err ? console.log(err) : console.log('bid removed');
   })
-  this.model('Avatar').remove({_id:this.avatar}, function (err, result){
+  this.model('Img').remove({_id:this.avatar}, function (err, result){
     err ? console.log(err) : console.log('avatar removed');
   })
 })

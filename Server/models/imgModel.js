@@ -2,12 +2,12 @@
 
 const mongoose = require('mongoose');
 
-let Avatar,
+let Img,
     Schema = mongoose.Schema;
 
-let avatarSchema = Schema({
+let imgSchema = Schema({
   img: { data: {type: String, required: true} , contentType: String }
 });
 
-Avatar = mongoose.model('Avatar', avatarSchema);
-module.exports = Avatar;
+Img = mongoose.model('Img', imgSchema);
+module.exports = Img;

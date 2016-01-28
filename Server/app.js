@@ -8,7 +8,7 @@ var morgan = require('morgan');
 var mongoose = require('mongoose');
 var authMiddleware = require('./util/authMiddleware');
 var cors = require('cors');
-//require('dotenv').load();
+// require('dotenv').load();
 var app = express();
 app.use(cors());
 
@@ -24,6 +24,7 @@ app.use('/API/auth', require('./routes/loginAndRegister'));
 app.use('/API/users', authMiddleware, require('./routes/Users'));
 app.use('/API/items', authMiddleware, require('./routes/items'));
 app.use('/API/bids', authMiddleware, require('./routes/bids'));
+app.use('/API/images', authMiddleware, require('./routes/img'));
 //app.use('*', require('./routes/index'))
 
 app.listen(PORT, function(){

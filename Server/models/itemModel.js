@@ -4,16 +4,16 @@ const mongoose = require('mongoose');
 const moment = require('moment');
 const User = require('./userModel');
 
-
 let Item,
     Schema = mongoose.Schema;
 
 let itemSchema = Schema({
   name: {type:String, required:true},
-  itemImg: { data: {type: String} , contentType: String },
+  itemImg: [{type: Schema.Types.ObjectId, ref:'Img' }],
   value:String,
   TimePosted:{type:Date, default:moment()},
   description:String,
+  tags:[{type:String}],
   owner:{type: Schema.Types.ObjectId, ref:'User'},
   bids:[{type: Schema.Types.ObjectId, ref:'Bid'}]
 });
