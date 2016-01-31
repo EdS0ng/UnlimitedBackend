@@ -10,5 +10,5 @@ module.exports = {
   validateUsername: function(username) {
     return true;
   },
-  adminNames: ["Virsaviya", "ray-kim-12", "paulgoblin", "EdS0ng"]
+  adminNames: ["ray-kim-12", "EdS0ng"]
 };
