@@ -3,6 +3,8 @@
 const express = require('express');
 const Bid = require('../models/bidModel');
 
+// creates modular, mountable route handlers;
+// Router instance is a complete middleware and routing system;
 var router = express.Router();
 
 router.get('/:id', function (req, res){
