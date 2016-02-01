@@ -16,7 +16,7 @@ router.post('/', function (req, res){
   let newItem = new Item(req.body.item);
   newItem.owner = req.userId;
   newItem.save(function (err, item){
-    if (err) res.status(400).send(err);
+    if (err) return res.status(400).send(err);
     Img.create( {img:req.body.img} , function(err, newImg){
       if (err) return res.status(400).send(err);
       Item.findByIdAndUpdate(item._id,{$addToSet:{itemImg:newImg._id}}, function(err, item){
