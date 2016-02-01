@@ -25,7 +25,7 @@ let router = express.Router();
 // });
 
 router.get('/me', function(req, res){
-  User.findById(req.userId).populate('avatar')
+  User.findById(req.userId).populate('avatar backgroundImg')
   .exec(function(err, user){
     user = user.toObject();
     delete user.password;
@@ -50,26 +50,5 @@ router.delete('/', function (req, res){
     })
   });
 });
-
-router.post('/avatar', function(req, res){
-  console.log("id confirmation", req.userId, Object.keys(req.body.img));
-  if (req.userId === req.body._id){
-    Avatar.create( {img: {data: req.body.img.base64, contentType:req.body.img.filetype}} , function(err, newAvatar){
-      if (err) return res.status(400).send(err);
-      User.findById(req.userId, function(err, user){
-        if (err) return res.status(400).send(err);
-        user.avatar = newAvatar._id;
-        user.save(function(err){
-          user.avatar = newAvatar;
-          user = user.toObject();
-          delete user.password;
-          res.status(err ? 400 : 200).send(err || user);
-        });
-      })
-    });
-  }else{
-    res.status(403).send('You are not authorized to do this action');
-  }
-})
 
 module.exports = router;

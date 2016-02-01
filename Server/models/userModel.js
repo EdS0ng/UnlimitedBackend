@@ -4,8 +4,7 @@ const mongoose = require('mongoose')
     , jwt      = require('jwt-simple')
     , bcrypt   = require('bcryptjs')
     , moment   = require('moment')
-    , CONFIG   = require('../config/auth')
-    , Img = require('../models/imgModel');
+    , CONFIG   = require('../config/auth');
 
 
 let User,
@@ -21,8 +20,8 @@ let userSchema = Schema({
   phone: {type:String, default:'Enter a Phone Number'},
   address: {type: String, default:'Enter an Address'},
   about:{type: String, default:'Enter a Short Description'},
-  avatar:{type: Schema.Types.ObjectId, ref: 'Img'},
-  backgroundImg: {type:Schema.Types.ObjectId, ref: 'Img'}
+  avatar:{type:Schema.Types.ObjectId, ref:'Img'},
+  backgroundImg: {type:Schema.Types.ObjectId, ref:'Img'}
 });
 
 userSchema.methods.token = function() {

@@ -6,9 +6,9 @@ const Item = require('../models/itemModel');
 var router = express.Router();
 
 router.get('/', function (req, res){
-  Item.find({}, function (err, items){
+  Item.find({}).populate('itemImg').exec(function (err, items){
     res.status(err ? 400 : 200).send(err || items);
-  })
+  });
 })
 
 router.post('/', function (req, res){
@@ -16,8 +16,13 @@ router.post('/', function (req, res){
   newItem.owner = req.userId;
   newItem.save(function (err, item){
     if (err) res.status(400).send(err);
-    req.itemId = item._id;
-    res.redirect('/API/images/itemImg');
+    Img.create( {img:req.body.img} , function(err, newImg){
+      if (err) return res.status(400).send(err);
+      Item.findByIdAndUpdate(item._id,{$addToSet:{itemImg:newImg._id}}, function(err, item){
+        if (err) return res.status(400).send(err);
+        res.status(err ? 400 : 200).send(err || item);
+      });
+    });
   })
 })
 

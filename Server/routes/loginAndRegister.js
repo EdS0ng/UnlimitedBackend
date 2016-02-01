@@ -27,7 +27,7 @@ router.post('/login', (req, res) => {
     user = user.toObject();
     delete user.password;
     res.status(err ? 400 : 200)
-    .send(err || {token: token, "user":user});
+    .send(err || {token: token});
   });
 });
 
