@@ -13,25 +13,16 @@ router.get('/', function (req, res){
 })
 
 router.post('/', function (req, res){
-  var arr = Object.keys(req.body);
-  req.body = JSON.parse(arr[0]);
   let newItem = new Item(req.body.item);
   newItem.owner = req.userId;
+  newItem.itemImg = req.body.img;
   newItem.save(function (err, item){
     if (err) return res.status(400).send(err);
-    Img.create( {img:req.body.img} , function(err, newImg){
-      if (err) return res.status(400).send(err);
-      Item.findByIdAndUpdate(item._id,{$addToSet:{itemImg:newImg._id}}, function(err, item){
-        if (err) return res.status(400).send(err);
-        res.status(err ? 400 : 200).send(err || item);
-      });
-    });
+    res.status(err ? 400 : 200).send(err || item);
   })
 })
 
 router.put('/', function (req, res){
-  var arr = Object.keys(req.body);
-  req.body = JSON.parse(arr[0]);
   Item.findByIdAndUpdate(req.body._id, req.body, function (err, updatedItem){
     res.status(err ? 400 : 200).send(err || 'updated');
   })

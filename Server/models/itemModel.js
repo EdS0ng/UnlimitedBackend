@@ -9,7 +9,7 @@ let Item,
 
 let itemSchema = Schema({
   name: {type:String, required:true},
-  itemImg: [{type: Schema.Types.ObjectId, ref:'Img' }],
+  itemImg: String,
   value:String,
   TimePosted:{type:Date, default:moment()},
   description:String,
