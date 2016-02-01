@@ -8,7 +8,7 @@ var morgan = require('morgan');
 var mongoose = require('mongoose');
 var authMiddleware = require('./util/authMiddleware');
 var cors = require('cors');
-require('dotenv').load();
+// require('dotenv').load();
 var app = express();
 app.use(cors());
 
