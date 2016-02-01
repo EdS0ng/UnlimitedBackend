@@ -25,7 +25,7 @@ let router = express.Router();
 // });
 
 router.get('/me', function(req, res){
-  User.findById(req.userId).populate('avatar backgroundImg')
+  User.findById(req.userId).populate('avatar backgroundImg itemsForSale bids')
   .exec(function(err, user){
     user = user.toObject();
     delete user.password;
@@ -34,9 +34,7 @@ router.get('/me', function(req, res){
 });
 
 router.put('/', function (req, res){
-  User.findByIdAndUpdate(req.body._id, req.body)
-  .populate('avatar')
-  .exec(function (err, updatedUser){
+  User.findByIdAndUpdate(req.userId, req.body, function (err, updatedUser){
     updatedUser = updatedUser.toObject();
     delete updatedUser.password;
     res.status(err ? 400 : 200).send(err || updatedUser);
@@ -44,7 +42,7 @@ router.put('/', function (req, res){
 });
 
 router.delete('/', function (req, res){
-  User.findById(req.body._id, function (err, toBeRemoved){
+  User.findById(req.userId, function (err, toBeRemoved){
     err ? console.log(err) : toBeRemoved.remove(function (err, removed){
       res.status(err ? 400 : 200).send(err || 'removed');
     })
