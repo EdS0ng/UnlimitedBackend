@@ -2,6 +2,7 @@
 
 const express = require('express');
 const Item = require('../models/itemModel');
+const Img = require('../models/imgModel');
 
 var router = express.Router();
 
