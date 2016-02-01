@@ -17,7 +17,7 @@ mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://127.0.0.1/Unlimited');
 // GENERAL MIDDLEWARE
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded( {extended:false, limit:'50Mb'} ));
-app.use(bodyParser.text({type: 'text/plain'}));
+app.use(bodyParser.text({type: 'text/plain', limit:'50Mb'}));
 // app.use(bodyParser.json({limit: '100Mb'}));
 
 // ROUTES
