@@ -13,6 +13,8 @@ router.get('/', function (req, res){
 })
 
 router.post('/', function (req, res){
+  var arr = Object.keys(req.body);
+  req.body = JSON.parse(arr[0]);
   let newItem = new Item(req.body.item);
   newItem.owner = req.userId;
   newItem.save(function (err, item){
@@ -28,6 +30,8 @@ router.post('/', function (req, res){
 })
 
 router.put('/', function (req, res){
+  var arr = Object.keys(req.body);
+  req.body = JSON.parse(arr[0]);
   Item.findByIdAndUpdate(req.body._id, req.body, function (err, updatedItem){
     res.status(err ? 400 : 200).send(err || 'updated');
   })

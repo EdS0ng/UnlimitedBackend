@@ -1,6 +1,6 @@
 'use strict';
 
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 3001;
 
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -8,7 +8,7 @@ var morgan = require('morgan');
 var mongoose = require('mongoose');
 var authMiddleware = require('./util/authMiddleware');
 var cors = require('cors');
-// require('dotenv').load();
+require('dotenv').load();
 var app = express();
 app.use(cors());
 
@@ -16,8 +16,9 @@ mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://127.0.0.1/Unlimited');
 
 // GENERAL MIDDLEWARE
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded( {extended: true, limit:'50Mb'} ));
-app.use(bodyParser.json({limit: '100Mb'}));
+app.use(bodyParser.urlencoded( {extended:false, limit:'50Mb'} ));
+app.use(bodyParser.text({type: 'text/plain'}));
+// app.use(bodyParser.json({limit: '100Mb'}));
 
 // ROUTES
 app.use('/API/auth', require('./routes/loginAndRegister'));
